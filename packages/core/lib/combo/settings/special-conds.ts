@@ -11,6 +11,7 @@ export const SPECIAL_CONDS_FIELDS = {
   stones:           { name: "Spiritual Stones" },
   medallions:       { name: "Medallions" },
   remains:          { name: "Boss Remains" },
+  dungeons:         { name: "Major Dungeons" },
   skullsGold:       { name: "Gold Skulltulas Tokens" },
   skullsSwamp:      { name: "Swamp Skulltulas Tokens" },
   skullsOcean:      { name: "Ocean Skulltulas Tokens" },

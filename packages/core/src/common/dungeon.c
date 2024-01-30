@@ -10,9 +10,29 @@ void comboDungeonSetFlags(int dungeonId, int mmCycle)
         BITMAP16_SET(gOotSave.eventsChk, EV_OOT_CHK_GOHMA);
         BITMAP16_SET(gOotSave.eventsChk, EV_OOT_CHK_TREE_DEAD);
         BITMAP16_SET(gOotSave.eventsChk, EV_OOT_CHK_MIDO_TREE_DEAD);
+        gMiscFlags.dekuClear = 1;
+        break;
+    case DUNGEONID_DODONGO_CAVERN:
+        gMiscFlags.dodongoClear = 1;
+        break;
+    case DUNGEONID_JABU_JABU:
+        gMiscFlags.jabuClear = 1;
+        break;
+    case DUNGEONID_TEMPLE_FOREST:
+        gMiscFlags.forestClear = 1;
+        break;
+    case DUNGEONID_TEMPLE_FIRE:
+        gMiscFlags.fireClear = 1;
         break;
     case DUNGEONID_TEMPLE_WATER:
         BITMAP16_SET(gOotSave.eventsChk, EV_OOT_CHK_LAKE_HYLIA_WATER);
+        gMiscFlags.waterClear = 1;
+        break;
+    case DUNGEONID_TEMPLE_SPIRIT:
+        gMiscFlags.spiritClear = 1;
+        break;
+    case DUNGEONID_TEMPLE_SHADOW:
+        gMiscFlags.shadowClear = 1;
         break;
     case DUNGEONID_TEMPLE_WOODFALL:
         gMmExtraBoss.boss |= (1 << 0);
@@ -24,7 +44,7 @@ void comboDungeonSetFlags(int dungeonId, int mmCycle)
                 MM_SET_EVENT_WEEK(EV_MM_WEEK_WOODFALL_TEMPLE_RISE);
             }
         }
-        gMiscFlags.erSwampClear = 1;
+        gMiscFlags.woodfallClear = 1;
         break;
     case DUNGEONID_TEMPLE_SNOWHEAD:
         gMmExtraBoss.boss |= (1 << 1);
@@ -32,7 +52,7 @@ void comboDungeonSetFlags(int dungeonId, int mmCycle)
         {
             MM_SET_EVENT_WEEK(EV_MM_WEEK_DUNGEON_SH);
         }
-        gMiscFlags.erSpring = 1;
+        gMiscFlags.snowheadClear = 1;
         break;
     case DUNGEONID_TEMPLE_GREAT_BAY:
         gMmExtraBoss.boss |= (1 << 2);
@@ -44,7 +64,7 @@ void comboDungeonSetFlags(int dungeonId, int mmCycle)
                 MM_SET_EVENT_WEEK(EV_MM_WEEK_GREAT_BAY_TURTLE);
             }
         }
-        gMiscFlags.erCoastClear = 1;
+        gMiscFlags.greatBayClear = 1;
         break;
     case DUNGEONID_TEMPLE_STONE_TOWER_INVERTED:
         gMmExtraBoss.boss |= (1 << 3);
@@ -52,6 +72,7 @@ void comboDungeonSetFlags(int dungeonId, int mmCycle)
         {
             MM_SET_EVENT_WEEK(EV_MM_WEEK_DUNGEON_ST);
         }
+        gMiscFlags.ikanaClear = 1;
         break;
     }
 }

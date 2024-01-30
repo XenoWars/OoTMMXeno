@@ -3,22 +3,23 @@
 #define SPF_STONES                  (1 <<  0)
 #define SPF_MEDALLIONS              (1 <<  1)
 #define SPF_REMAINS                 (1 <<  2)
-#define SPF_SKULLS_GOLD             (1 <<  3)
-#define SPF_SKULLS_SWAMP            (1 <<  4)
-#define SPF_SKULLS_OCEAN            (1 <<  5)
-#define SPF_FAIRIES_WF              (1 <<  6)
-#define SPF_FAIRIES_SH              (1 <<  7)
-#define SPF_FAIRIES_GB              (1 <<  8)
-#define SPF_FAIRIES_ST              (1 <<  9)
-#define SPF_FAIRY_TOWN              (1 << 10)
-#define SPF_MASKS_REGULAR           (1 << 11)
-#define SPF_MASKS_TRANSFORM         (1 << 12)
-#define SPF_MASKS_OOT               (1 << 13)
-#define SPF_TRIFORCE                (1 << 14)
-#define SPF_COIN_RED                (1 << 15)
-#define SPF_COIN_GREEN              (1 << 16)
-#define SPF_COIN_BLUE               (1 << 17)
-#define SPF_COIN_YELLOW             (1 << 18)
+#define SPF_DUNGEONS                (1 <<  3)
+#define SPF_SKULLS_GOLD             (1 <<  4)
+#define SPF_SKULLS_SWAMP            (1 <<  5)
+#define SPF_SKULLS_OCEAN            (1 <<  6)
+#define SPF_FAIRIES_WF              (1 <<  7)
+#define SPF_FAIRIES_SH              (1 <<  8)
+#define SPF_FAIRIES_GB              (1 <<  9)
+#define SPF_FAIRIES_ST              (1 << 10)
+#define SPF_FAIRY_TOWN              (1 << 11)
+#define SPF_MASKS_REGULAR           (1 << 12)
+#define SPF_MASKS_TRANSFORM         (1 << 13)
+#define SPF_MASKS_OOT               (1 << 14)
+#define SPF_TRIFORCE                (1 << 15)
+#define SPF_COIN_RED                (1 << 16)
+#define SPF_COIN_GREEN              (1 << 17)
+#define SPF_COIN_BLUE               (1 << 18)
+#define SPF_COIN_YELLOW             (1 << 19)
 
 int comboGoalCond(void)
 {
@@ -72,6 +73,22 @@ int comboSpecialCond(int special)
         count += gMmSave.inventory.quest.remainsGoht;
         count += gMmSave.inventory.quest.remainsGyorg;
         count += gMmSave.inventory.quest.remainsTwinmold;
+    }
+
+    if (cond->flags & SPF_DUNGEONS)
+    {
+        if (gMiscFlags.dekuClear) count ++;
+        if (gMiscFlags.dodongoClear) count ++;
+        if (gMiscFlags.jabuClear) count ++;
+        if (gMiscFlags.forestClear) count ++;
+        if (gMiscFlags.fireClear) count ++;
+        if (gMiscFlags.waterClear) count ++;
+        if (gMiscFlags.spiritClear) count ++;
+        if (gMiscFlags.shadowClear) count ++;
+        if (gMiscFlags.woodfallClear) count ++;
+        if (gMiscFlags.snowheadClear) count ++;
+        if (gMiscFlags.greatBayClear) count ++;
+        if (gMiscFlags.ikanaClear) count ++;
     }
 
     if (cond->flags & SPF_SKULLS_GOLD)

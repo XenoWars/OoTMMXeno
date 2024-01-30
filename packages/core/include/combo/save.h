@@ -50,9 +50,18 @@ extern SharedCustomSave gSharedCustomSave;
 # define SAVE_EXTRA_RECORD(type, index) (*((type*)(gOotSave.perm[index].raw + 0x10)))
 typedef struct
 {
-    u32 erSpring:1;
-    u32 erSwampClear:1;
-    u32 erCoastClear:1;
+    u32 dekuClear:1;
+    u32 dodongoClear:1;
+    u32 jabuClear:1;
+    u32 forestClear:1;
+    u32 fireClear:1;
+    u32 waterClear:1;
+    u32 spiritClear:1;
+    u32 shadowClear:1;
+    u32 woodfallClear:1;
+    u32 snowheadClear:1;
+    u32 greatBayClear:1;
+    u32 ikanaClear:1;
     u32 unused:29;
 }
 MiscFlags;

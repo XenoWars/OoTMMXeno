@@ -12,7 +12,7 @@ void comboDungeonSetFlags(int dungeonId, int mmCycle)
         BITMAP16_SET(gOotSave.eventsChk, EV_OOT_CHK_MIDO_TREE_DEAD);
         gMiscFlags.dekuClear = 1;
         break;
-    case DUNGEONID_DODONGO_CAVERN:
+    case DUNGEONID_DODONGOS_CAVERN:
         gMiscFlags.dodongoClear = 1;
         break;
     case DUNGEONID_JABU_JABU:

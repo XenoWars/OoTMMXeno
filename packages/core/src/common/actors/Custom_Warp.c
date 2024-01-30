@@ -148,7 +148,7 @@ void comboSpawnCustomWarps(GameState_Play* play)
         z = 600.f;
     }
 
-    if ((comboConfig(CFG_ER_MAJOR_DUNGEONS) || gComboData.preCompleted & (1 << DUNGEONID_TEMPLE_WOODFALL)) && play->sceneId == SCE_MM_SOUTHERN_SWAMP && !MM_GET_EVENT_WEEK(EV_MM_WEEK_DUNGEON_WF) && gMiscFlags.erwoodfallClear)
+    if ((comboConfig(CFG_ER_MAJOR_DUNGEONS) || gComboData.preCompleted & (1 << DUNGEONID_TEMPLE_WOODFALL)) && play->sceneId == SCE_MM_SOUTHERN_SWAMP && !MM_GET_EVENT_WEEK(EV_MM_WEEK_DUNGEON_WF) && gMiscFlags.woodfallClear)
     {
         variable = SWITCH_SWAMP_CLEAR;
         x = -910.f;

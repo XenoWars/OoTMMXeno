@@ -135,6 +135,8 @@ export type World = {
   checkHints: { [k: string]: string[] };
   locations: Set<string>;
   songLocations: Set<string>;
+  owlLocations: Set<string>;
+  songOwlLocations: Set<string>;
   warpLocations: Set<string>;
   prices: number[];
   mq: Set<string>;
@@ -220,6 +222,8 @@ export function cloneWorld(world: World): World {
     checkHints: cloneDeep(world.checkHints),
     locations: new Set(world.locations),
     songLocations: new Set(world.songLocations),
+    owlLocations: new Set(world.owlLocations),
+    songOwlLocations: new Set(world.songOwlLocations),
     warpLocations: new Set(world.warpLocations),
     prices: [...world.prices],
     mq: new Set(world.mq),
@@ -307,6 +311,8 @@ export class LogicPassWorld {
       checkHints: {},
       locations: new Set(),
       songLocations: new Set(),
+      owlLocations: new Set(),
+      songOwlLocations: new Set(),
       warpLocations: new Set(),
       prices,
       mq,
@@ -463,6 +469,10 @@ export class LogicPassWorld {
 
       if (ItemHelpers.isSong(item)) {
         this.world.songLocations.add(location);
+      } else if (ItemHelpers.isOwlStatue(item)) {
+        this.world.owlLocations.add(location);
+      } else if (ItemHelpers.isSongOrOwl(item)) {
+        this.world.songOwlLocations.add(location);
       } else if (ItemHelpers.isDungeonReward(item)) {
         this.world.warpLocations.add(location);
       }

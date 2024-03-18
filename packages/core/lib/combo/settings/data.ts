@@ -463,6 +463,7 @@ export const SETTINGS = [{
   description: 'Make owl statue items that can be shuffled.',
   values: [
     { value: 'none', name: 'None', description: 'Owl statues are vanilla' },
+    { value: 'owlLocations', name: 'Owl Locations', description: 'Owl Statues are shuffled amongst each other' },
     { value: 'anywhere', name: 'Anywhere', description: 'Owl statues are shuffled in the item pool' },
   ],
   default: 'none'
@@ -592,6 +593,14 @@ export const SETTINGS = [{
   type: 'boolean',
   description: 'Fun setting: should using the Weird/Pocket Eggs give an item? If not, they\'re entirely removed from the game',
   default: false
+}, {
+  key: 'songsOwlsMix',
+  name: 'Shuffle Songs and Owl Statues Together',
+  category: 'main.shuffle',
+  type: 'boolean',
+  description: 'Mixes the pools of Song and Owl Statue Items, allowing them to be shuffled amongst each other',
+  default: false,
+  cond: (s: any) => s.songs === 'songLocations' && s.owlShuffle === 'owlLocations'
 },
 { ...SETTING_PRICE, key: 'priceOotShops', name: 'OoT Shops Prices', description: 'Sets the price of items inside OoT shops' },
 { ...SETTING_PRICE, key: 'priceOotScrubs', name: 'OoT Scrubs Prices', description: 'Sets the price of items sold by OoT scrubs' },

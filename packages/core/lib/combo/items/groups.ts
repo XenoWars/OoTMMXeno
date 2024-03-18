@@ -766,6 +766,11 @@ export const CLOCKS = new Set([
   Items.MM_CLOCK6,
 ]);
 
+export const SONGSOWLS = new Set([
+  ...OWLS,
+  ...SONGS,
+]);
+
 export const REQUIRED = new Set([
   ...OWLS,
   ...RUPEES_SILVER,

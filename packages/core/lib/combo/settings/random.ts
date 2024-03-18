@@ -102,7 +102,6 @@ export function applyRandomSettings(rnd: OptionRandomSettings, oldSettings: Sett
 
   base.shuffleMerchantsMm = booleanWeighted(random, 0.50);
   base.eggShuffle = booleanWeighted(random, 0.50);
-  base.songs = sampleWeighted(random, { songLocations: 6, anywhere: 4 });
   base.divingGameRupeeShuffle = booleanWeighted(random, 0.50);
   base.pondFishShuffle = booleanWeighted(random, 0.50);
   base.fairyFountainFairyShuffleOot = booleanWeighted(random, 0.50);
@@ -202,7 +201,11 @@ export function applyRandomSettings(rnd: OptionRandomSettings, oldSettings: Sett
   } else {
     base.shopShuffleMm = sampleWeighted(random, { none: 10, full: 7 });
   }
-  base.owlShuffle = sampleWeighted(random, { none: 10, anywhere: 7 });
+
+  /* Songs and Owls */
+  base.songs = sampleWeighted(random, { songLocations: 6, anywhere: 4 });
+  base.owlShuffle = sampleWeighted(random, { none: 10, owlLocations: 6, anywhere: 4 });
+  base.songsOwlsMix = booleanWeighted(random, 0.5);;
 
   /* Soul shuffle - 25% enabled, 25% disabled, 50% individual */
   switch (randomInt(random, 4)) {

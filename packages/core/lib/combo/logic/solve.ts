@@ -872,13 +872,27 @@ export class LogicPassSolver {
     const assumedPool = countMapCombine(this.state.pools.required, this.state.pools.nice);
     const pool = countMapArray(assumedPool);
     let songLocations: Location[] = [];
+    let owlLocations: Location[] = [];
+    let songOwlLocations: Location[] = [];
     let rewardsLocations: Location[] = [];
     let items: PlayerItem[] = [];
 
-    if (this.input.settings.songs === 'songLocations') {
+    if (this.input.settings.songs === 'songLocations' && !this.input.settings.songsOwlsMix) {
       const songs = pool.filter(x => ItemHelpers.isSong(x.item));
       songLocations = this.worlds.map((x, i) => [...x.songLocations].map(l => makeLocation(l, i))).flat();
       items = [ ...items, ...songs ];
+    }
+
+    if (this.input.settings.owlShuffle === 'owlLocations' && !this.input.settings.songsOwlsMix) {
+      const owlStatues = pool.filter(x => ItemHelpers.isOwlStatue(x.item));
+      owlLocations = this.worlds.map((x, i) => [...x.owlLocations].map(l => makeLocation(l, i))).flat();
+      items = [ ...items, ...owlStatues ];
+    }
+
+    if (this.input.settings.songsOwlsMix) {
+      const songOwl = pool.filter(x => ItemHelpers.isSongOrOwl(x.item));
+      songOwlLocations = this.worlds.map((x, i) => [...x.songOwlLocations].map(l => makeLocation(l, i))).flat();
+      items = [ ...items, ...songOwl ];
     }
 
     if (this.input.settings.dungeonRewardShuffle === 'dungeonBlueWarps') {
@@ -887,10 +901,10 @@ export class LogicPassSolver {
       items = [ ...items, ...rewards ];
     }
 
-    const locations = [...songLocations, ...rewardsLocations];
+    const locations = [...songLocations, ...owlLocations, ...songOwlLocations, ...rewardsLocations];
 
     if (items.length > locations.length) {
-      throw new Error(`Not enough locations for songs/dungeon rewards`);
+      throw new Error(`Not enough locations for songs/owl statues/dungeon rewards`);
     }
 
     /* Place items */
@@ -909,6 +923,10 @@ export class LogicPassSolver {
       let restrictedLocations: Location[];
       if (ItemHelpers.isSong(item.item)) {
         restrictedLocations = songLocations;
+      } else if (ItemHelpers.isOwlStatue(item.item)) {
+        restrictedLocations = owlLocations;
+      } else if (ItemHelpers.isSongOrOwl(item.item)) {
+        restrictedLocations = songOwlLocations;
       } else {
         restrictedLocations = rewardsLocations;
       }
@@ -949,8 +967,10 @@ export class LogicPassSolver {
         }
 
         /* Exclude song locs in non-songsanity */
-        if (this.input.settings.songs === 'songLocations') {
+        if (this.input.settings.songs === 'songLocations' && !this.input.settings.songsOwlsMix) {
           rawLocations = new Set([...rawLocations].filter(x => !world.songLocations.has(x)));
+        } else if (this.input.settings.songsOwlsMix) {
+          rawLocations = new Set([...rawLocations].filter(x => !world.songOwlLocations.has(x)));
         }
 
         const locations = new Set([...rawLocations].map(x => makeLocation(x, player)));

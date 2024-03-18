@@ -37,7 +37,7 @@ export class LogicPassMinimize {
     /* Extract locs to test */
     let locsToTest: Location[] = [];
     for (const loc of this.locations) {
-      if (isLocationFullyShuffled(this.state.settings, this.state.fixedLocations, this.state.items, loc, { songs: true, noPlando: true })) {
+      if (isLocationFullyShuffled(this.state.settings, this.state.fixedLocations, this.state.items, loc, { songs: true, owlStatues: true, noPlando: true })) {
         if (!ItemHelpers.isTriforcePiece(this.state.items.get(loc)!.item)) {
           locsToTest.push(loc);
         }

@@ -1297,6 +1297,7 @@ export class LogicPassWorldTransform {
       this.removeItem(Items.MM_SONG_GORON_HALF);
       for (let i = 0; i < this.state.worlds.length; ++i) {
         this.state.worlds[i].songLocations.delete('MM Goron Baby');
+		this.state.worlds[i].songOwlLocations.delete('MM Goron Baby');
       }
     }
 

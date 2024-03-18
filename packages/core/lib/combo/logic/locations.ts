@@ -104,6 +104,7 @@ export function isLocationOtherFairy(world: World, loc: Location) {
 type IsLocationFullyShuffledOptions = {
   noPlando?: boolean;
   songs?: boolean;
+  owlStatues?: boolean;
   rewards?: boolean;
 };
 
@@ -191,6 +192,13 @@ export function isLocationFullyShuffled(settings: Settings, fixedLocations: Set<
   /* Songs */
   if (opts.songs) {
     if (ItemHelpers.isSong(item.item) && settings.songs !== 'anywhere') {
+      return false;
+    }
+  }
+
+  /* Owl Statues */
+  if (opts.owlStatues) {
+    if (ItemHelpers.isOwlStatue(item.item) && settings.owlShuffle !== 'anywhere') {
       return false;
     }
   }
